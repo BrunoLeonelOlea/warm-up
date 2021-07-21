@@ -7,9 +7,11 @@ import org.springframework.transaction.annotation.Transactional;
 import com.alkemy.entity.User;
 
 @Repository
-public interface UserRepositoy extends JpaRepository<User, Long>{
+public interface UserRepository extends JpaRepository<User, Long>{
 	
 	@Transactional(readOnly = true)
 	User findByEmail(String email);
+	
+	User findById(long id);
 
 }

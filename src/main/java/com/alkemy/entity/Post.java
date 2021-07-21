@@ -2,7 +2,6 @@ package com.alkemy.entity;
 
 import java.time.LocalDate;
 
-import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
@@ -33,12 +32,14 @@ public class Post {
 	
 	private String imagen;
 	
-	private String Categoria;
-	
 	@JsonFormat(pattern = "yyyy-MM-dd", shape = Shape.STRING)
 	private LocalDate fechaDeCreacion;
+
+	@ManyToOne
+	@JoinColumn(name = "id_categoria")
+	private Category categoria;
 	
 	@ManyToOne
 	@JoinColumn(name = "id_usuario")	
-	private User idUsuario;
+	private User user;
 }

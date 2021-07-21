@@ -10,6 +10,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
 import com.alkemy.entity.Post;
+import com.alkemy.pojos.PostRequest;
 import com.alkemy.service.PostService;
 
 @RestController
@@ -29,9 +30,9 @@ public class PostController {
 	}
 	
 	@PostMapping
-	public ResponseEntity<?> createPost(@RequestBody Post post ){
+	public ResponseEntity<?> createPost(@RequestBody PostRequest postRequest ){
 		try {
-			return ResponseEntity.status(HttpStatus.CREATED).body(postService.createPost(post));
+			return ResponseEntity.status(HttpStatus.CREATED).body(postService.createPost(postRequest));
 		} catch (Exception e) {
 			return ResponseEntity.status(HttpStatus.BAD_REQUEST).build();
 		}
