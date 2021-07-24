@@ -12,6 +12,7 @@ public interface UserRepository extends JpaRepository<User, Long>{
 	@Transactional(readOnly = true)
 	User findByEmail(String email);
 	
+	@Transactional(readOnly = true)
 	User findById(long id);
 
 }

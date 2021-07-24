@@ -9,5 +9,7 @@ import com.alkemy.entity.Category;
 public interface CategoryRepository extends JpaRepository<Category, Long>{
 	
 	Category findById(long id);
+	
+	Category findByNombre(String nombre);
 
 }
