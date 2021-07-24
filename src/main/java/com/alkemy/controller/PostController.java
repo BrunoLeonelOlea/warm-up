@@ -11,6 +11,7 @@ import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PatchMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.PutMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
@@ -85,6 +86,15 @@ public class PostController {
 	public ResponseEntity<?> deletePost(@PathVariable long id){
 		try {
 			return ResponseEntity.status(204).body(postService.deletePost(id));
+		} catch (Exception e) {
+			return ResponseEntity.status(404).body("{\"error\":\"" + e.getMessage() + "\"}");
+		}
+	}
+	
+	@PutMapping("/{id}")
+	public ResponseEntity<?> softDeletePost(@PathVariable long id){
+		try {
+			return ResponseEntity.status(204).body(postService.softDeletePost(id));
 		} catch (Exception e) {
 			return ResponseEntity.status(404).body("{\"error\":\"" + e.getMessage() + "\"}");
 		}

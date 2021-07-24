@@ -149,4 +149,15 @@ public class PostService {
 			throw new Exception(e.getMessage());
 		}
 	}
+	
+	public boolean softDeletePost(long id) throws Exception{
+		try {
+			if(postRepository.existsById(id)) {
+				postRepository.softDeletePost(id);
+			}
+			return true;
+		} catch (Exception e) {
+			throw new Exception(e.getMessage());
+		}
+	}
 }

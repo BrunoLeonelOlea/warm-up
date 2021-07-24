@@ -2,6 +2,7 @@ package com.alkemy.entity;
 
 import java.time.LocalDateTime;
 
+import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
@@ -10,6 +11,7 @@ import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
 import javax.validation.constraints.NotNull;
 
+import org.hibernate.annotations.Where;
 import org.springframework.format.annotation.DateTimeFormat;
 import org.springframework.format.annotation.DateTimeFormat.ISO;
 
@@ -24,6 +26,7 @@ import lombok.NoArgsConstructor;
 @Data
 @NoArgsConstructor
 @AllArgsConstructor
+@Where(clause = "status = true")
 public class Post {
 	
 	@Id
@@ -50,4 +53,7 @@ public class Post {
 	@JoinColumn(name = "id_usuario")
 	@NotNull
 	private User user;
+	
+	@Column(name = "status",columnDefinition = "boolean DEFAULT true")
+	private Boolean status = true;
 }
